@@ -44,7 +44,9 @@ function render (newDoc) {
 
         itemEl.onclick = (ev) => {
             doc = toggle(doc, index)
+            save(doc)
             render(doc)
+            updatePeers(doc)
         }
     })
 
@@ -54,6 +56,7 @@ function render (newDoc) {
         save(doc)
         input.value = null
         render(doc)
+        updatePeers(doc)
     }
 
 }
@@ -68,6 +71,7 @@ channel.onmessage = function (ev) {
     syncState = newSyncState
     updatePeers(doc)
     save(doc)
+    render(doc)
 }
 
 // typically, you'd have one sync state for each peer
